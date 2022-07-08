@@ -23,14 +23,12 @@ class Scrape():
         response = requests.get(self.url, headers=self.headers)
         return response.text
 
-    # 对页面数据进行解析
-    def parse_page(self, data, page_xpath, img_xpath):
+    # 对页面数据进行解析,得到ul下面的img地址
+    def parse_page(self, data,li_path,img_path):
         mytext = etree.HTML(data)
-        mytext = mytext.xpath(page_xpath)
-        print(mytext)
-        mytext = mytext[0].xpath(img_xpath)
-        print(f"图片的url是：{mytext[0]}")
-        return mytext[0]
+        mytext = mytext.xpath(li_path)
+        mytext = mytext[0].xpath(img_path)
+        return mytext
 
     def get_byte(self, img_data):
         response = requests.get(img_data, headers=self.headers)

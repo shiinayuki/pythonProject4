@@ -9,14 +9,14 @@
 import pachong
 import fileutil
 #网页数据
-url = "https://baijiahao.baidu.com/s?id=1737670505078160135&wfr=spider&for=pc"
-page_xpath = '//*[@id="ssr-content"]/div[2]/div/div[1]/div[2]/div[1]/div[3]/div/img'
+url = "https://tieba.baidu.com/f?kw=%E5%8E%9F%E7%A5%9E%E5%86%85%E9%AC%BC"
+page_xpath = '//*[@id="thread_list"]'
 img_xpath = "./@src"
 #在线解析
 tiebapachong = pachong.Scrape(url)
 mytext = tiebapachong.get_data()
-mytext = mytext.replace("<!--","")
-imgurl = tiebapachong.parse_page(mytext, page_xpath, img_xpath)
-imgdata = tiebapachong.get_byte(imgurl)
+mytext = mytext.replace('style="display:none;"><!--\n', 'style="display:none;">')
+#imgurl = tiebapachong.parse_page(mytext)
+#imgdata = tiebapachong.get_byte(imgurl)
 fileutil.save_text("html.html",mytext)
-fileutil.save_img("直接保存图片图片.jpg",imgdata)
+#fileutil.save_img("直接保存图片图片.jpg",imgdata)

@@ -8,10 +8,19 @@
 """
 import pachong
 import fileutil
-import runmain
+#网址信息
+url = "https://tieba.baidu.com/f?kw=%E5%8E%9F%E7%A5%9E%E5%86%85%E9%AC%BC"
+li_path = '//*[@id="thread_list"]'
+img_path = "//@bpic"
 #本地解析
-tiebapachong = pachong.Scrape(runmain.url)
-mytext = fileutil.read_text("html.html")
-imgurl = tiebapachong.parse_page(mytext,runmain.page_xpath,runmain.img_xpath)
-imgdata = tiebapachong.get_byte(imgurl)
-fileutil.save_img("读html保存图片.jpg", imgdata)
+tiebapachong = pachong.Scrape(url)
+mytext = tiebapachong.get_data()
+mytext = mytext.replace('style="display:none;"><!--\n', 'style="display:none;">')
+fileutil.save_text("解析网址.html",mytext)
+mytext = fileutil.read_text("解析网址.html")
+
+ul_all_imgs = tiebapachong.parse_page(mytext, li_path, img_path)
+for index,img in enumerate(ul_all_imgs):
+    print(f"共有{len(ul_all_imgs)}图片，这是第{index}张图片的url：{img}")
+    imgdata = tiebapachong.get_byte(img)
+    fileutil.save_img(f"图片{index}.jpg", imgdata)
