@@ -12,8 +12,9 @@ from lxml import etree
 
 class Scrape():
     # 初始化
-    def __init__(self, url):
-        self.url = url
+    def __init__(self, name, pn):
+        #self.url = url
+        self.url = f"https://tieba.baidu.com/f?kw={name}&ie=utf-8&pn={pn}"
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44"
         }

@@ -6,6 +6,7 @@
 @File ：fileutil.py
 @IDE ：PyCharm
 """
+import os
 def save_text(filename,data):
     with open(filename,'w',encoding='utf-8') as f:
         f.write(data)
@@ -17,3 +18,6 @@ def read_text(filename):
 def save_img(imgname,data):
     with open(imgname,'wb') as f:
         f.write(data)
+
+def creat_dir(path):
+    os.makedirs(path)
