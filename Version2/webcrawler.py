@@ -9,6 +9,7 @@
 import requests
 from lxml import etree
 import os
+import runmain
 
 """
 壁纸种类
@@ -52,7 +53,11 @@ page = "i"
 
 class Scrape():
     # 初始化
-    def __init__(self, wallpaper_type, detail_type, page):
+    def __init__(self, wallpaper_type, detail_type, img_total, page):
+        self.wallpaper_type = wallpaper_type
+        self.choose_detail_type = detail_type
+        self.img_total = img_total
+
         self.url = f"https://www.toopic.cn/{wallpaper_type}/{detail_type}&page={page}"
 
         self.headers = {
@@ -102,7 +107,8 @@ class Scrape():
             return False
 
     #定义程序输入变量函数
-    def variate(self, choose_wallpaper_type,choose_detail_type,img_total):
+    def variate(self, choose_wallpaper_type, choose_detail_type, img_total):
         self.choose_wallpaper_type = choose_wallpaper_type
         self.choose_detail_type = choose_detail_type
         self.img_total = img_total
+        return runmain.wallpaper_type[int(choose_wallpaper_type)], runmain.detail_type[int(choose_detail_type)]

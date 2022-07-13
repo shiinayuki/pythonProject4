@@ -64,60 +64,10 @@ zh_dt = ["全部", "游戏原画", "卡通动漫", "飞机航天", "自然风景
          "体育运动", "美女写真", "人文风土", "美食甜品",
          "城市建筑", "汽车船舶", "影视剧照", "情感文艺"
          ]
-print(">>>>>>>>>>>>>>>>>>>>hello<<<<<<<<<<<<<<<<<<<<")
-print("\n")
-print("              欢迎使用壁纸大师程序               ")
-print("\n")
-print(">>>>>>>>>>>>>>>>>>>>world<<<<<<<<<<<<<<<<<<<<")
-print("\n")
-print("                  本程序提供：                  ")
-print("        1.电脑壁纸、2.手机壁纸、3.4K壁纸          ")
-print("           请输入所需要的壁纸类型序号:            ")
-print("\n")
-print(">>>>>>>>>>>>>>>>>>>>hello<<<<<<<<<<<<<<<<<<<<")
 
-choose_wallpaper_type = input(int)
-
-# 确定wallpaper_type
-for i in range(10):
-    if choose_wallpaper_type == "1" or choose_wallpaper_type == "2" or choose_wallpaper_type == "3":
-        wt = wallpaper_type[int(choose_wallpaper_type)]
-        print(f"所选的类型为：{wt}({zh_wt[int(choose_wallpaper_type)]})")
-        break
-    else:
-        print("输入不合规范，请重新输入：")
-        choose_wallpaper_type = input(int)
-
-print(">>>>>>>>>>>>>>>>>>>>hello<<<<<<<<<<<<<<<<<<<<")
-print("\n")
-print("                以及细分选项如下：               ")
-print("1.游戏原画、2.卡通动漫、3.飞机航天、4.自然风景、5.花卉植物")
-print("6.绘画创意、7.动物萌宠、8.家居陈设、9.静物特写、10.肌理纹理")
-print("11.军事科技、12.明星大咖、13.太空科幻、14.禅意古风")
-print("15.体育运动、16.美女写真、17.人文风土、18.美食甜品")
-print("19.城市建筑、20.汽车船舶、21.影视剧照、22.情感文艺")
-print("\n")
-print("    请输入所需要壁纸细分选项序号(搜索全部输入 0 ):     ")
-print("\n")
-print(">>>>>>>>>>>>>>>>>>>>world<<<<<<<<<<<<<<<<<<<<")
-choose_detail_type = input(int)
-
-#确认所需图片数量
-img_total = input(f"请输入所需壁纸的数量")
+pa = webcrawler.Scrape.variate(1, 1, 10)
+choose_detail = pa(choose)
 img_count = 1
-
-# 确定detail_type的值
-for i in range(10):
-    if int(choose_detail_type) == 0:
-        print("本次不需要细分选项，本程序执行搜索全部图片")
-        break
-    elif int(choose_detail_type) >= 1 and int(choose_detail_type) < 23:
-        dt = detail_type[int(choose_detail_type)]
-        print(f"所选的类型为：{dt}({zh_dt[int(choose_detail_type)]})")
-        break
-    else:
-        print("输入不合规范，请重新输入：")
-        choose_detail_type = input(int)
 
 # html定位信息
 li_path = '//*[@class="clearfix pic-list gallery"]'
